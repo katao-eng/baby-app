@@ -1,0 +1,83 @@
+<div class="items-sell-contents">
+  <header class="items-sell-header">
+    <%= link_to image_tag('baby_app_logo.001.png' , size: '185x50'), "/" %>
+
+  </header>
+  <div class="items-sell-main">
+    <img class="mb-4 d-block mx-auto" src="/assets/akachan_smile.png" alt="" width="72" height="72">
+    <h2 class="text-center">
+      赤ちゃんの登録
+    </h2>
+    <br>
+
+    <%= form_with local: true do |f| %>
+
+    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
+    <%# render 'shared/error_messages', model: f.object %>
+    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
+
+    <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
+
+    <div class="new-items">
+
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">ニックネーム</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) Baby太郎", maxlength:"40" %>
+      </div>
+
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">生年月日</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <div class='input-birth-wrap'>
+          <%= raw sprintf(
+                  f.date_select(
+                    :birthday,
+                    class:'select-birth',
+                    id:"birth-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: (Time.now.year - 15),
+                    end_year: (Time.now.year),
+                    date_separator: '%s'),
+                  "<p><small> 年 </small></p>", "<p><small> 月 </small></p>") + "<p><small> 日 </small></p>" %>
+        </div>
+      </div>
+
+
+    </div>
+
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%
+=begin%>
+      <%= f.submit "登録する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+      <%
+=end%>
+
+      <div class="text-center">
+        <button type="button" class="btn btn-danger btn-lg">登録する</button>
+      </div>
+
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
+
+  <footer class="items-sell-footer">
+    <ul class="menu">
+      <li><a href="#">プライバシーポリシー</a></li>
+      <li><a href="#">Baby App利用規約</a></li>
+      <li><a href="#">お知らせ</a></li>
+    </ul>
+    <%= link_to image_tag('baby_app_logo.001.png' , size: '185x50'), "/" %>
+    <p class="inc">
+      ©︎ Baby App
+    </p>
+  </footer>
+</div>
