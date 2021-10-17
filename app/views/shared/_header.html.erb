@@ -25,7 +25,14 @@
         <%# 赤ちゃんのニックネーム＋ママorパパorその他で表示が変わるように分岐する%>
         <%# <li><%= link_to current_user.nickname, "#", class: "user-nickname" </li> %>
         <%# <li><%= link_to 'ログアウト', "#", method: :delete, class: "logout" </li> %>
-        <li><%= link_to 'ベビーニックネーム' + ' ママorパパ', "#", class: "login" %></li>
+        <li><%= link_to 'ベビーニックネーム', "#", class: "login" %>
+          <% if current_user.relationship_id == "ママ" %>
+          ママ
+          <% elsif current_user.relationship_id == "パパ" %>
+          パパ
+          <% end %>
+        </li>
+        &emsp; &emsp;
         <%# <li><%= link_to 'ログアウト', "#", class: "sign-up" %><%#</li> %>
         <li><button type="button" class="btn btn-outline-secondary">ログアウト</button></li>
         <%# //赤ちゃんのニックネーム＋ママorパパorその他で表示が変わるように分岐する%>
