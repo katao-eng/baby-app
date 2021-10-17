@@ -34,7 +34,11 @@
         </li>
         &emsp; &emsp;
         <%# <li><%= link_to 'ログアウト', "#", class: "sign-up" %><%#</li> %>
-        <li><button type="button" class="btn btn-outline-secondary">ログアウト</button></li>
+        <li>
+          <%= link_to sanitize('<button type="button"></button>') + 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしてよろしいですか？'}, class: "btn btn-outline-secondary" %>
+
+
+        </li>
         <%# //赤ちゃんのニックネーム＋ママorパパorその他で表示が変わるように分岐する%>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 <%= render "shared/second-header"%>
 
+<%= form_with model: @user, url: user_session_path, class: 'registration-main', local: true do |f| %>
 <a id="skippy" class="sr-only sr-only-focusable" href="#content">
   <div class="container">
     <span class="skiplink-text">Skip to main content</span>
@@ -10,26 +11,35 @@
     <img class="mb-4 d-block mx-auto" src="/assets/sign_in.png" alt="" width="72" height="72">
     <!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
     <h1 class="h3 mb-3 font-weight-normal text-center">サインイン</h1>
+
+    <%= render 'shared/error_messages', model: f.object %>
+
     <!-- <label for="inputEmail" class="sr-only">Email address</label> -->
     <label for="inputEmail" class="sr-only">メールアドレス</label>
     <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> -->
-    <input type="email" id="inputEmail" class="form-control" placeholder="メールアドレス" required="" autofocus="">
+    <input type="email" name="user[email]" id="inputEmail" class="form-control" placeholder="メールアドレス" required=""
+      autofocus="">
     <!-- <label for="inputPassword" class="sr-only">Password</label> -->
     <label for="inputPassword" class="sr-only">パスワード</label>
     <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
-    <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" required="">
-    <div class="checkbox mb-3">
+    <input type="password" name="user[password]" id="inputPassword" class="form-control" placeholder="パスワード"
+      required="">
+    <br>
+
+    <%# <div class="checkbox mb-3">
       <label>
         <!-- <input type="checkbox" value="remember-me"> Remember me -->
         <input type="checkbox" value="remember-me"> 記憶する
       </label>
-    </div>
+    </div> %>
     <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     <br>
-    <div class="text-center">アカウントをお持ちでない方は<a href="#" class="alert-link">こちら</a></div>
+    <div class="text-center">アカウントをお持ちでない方は<a href="/users/sign_up" class="alert-link">こちら</a></div>
 
     <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
   </form>
 </div>
+<% end %>
+
 <%= render "shared/second-footer"%>
