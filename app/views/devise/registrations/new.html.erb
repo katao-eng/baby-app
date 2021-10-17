@@ -1,5 +1,6 @@
 <%= render "shared/second-header"%>
 
+<%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
 <a id="skippy" class="sr-only sr-only-focusable" href="#content">
   <div class="container">
     <span class="skiplink-text">Skip to main content</span>
@@ -10,27 +11,32 @@
     <img class="mb-4 d-block mx-auto" src="/assets/fufu_young.png" alt="" width="72" height="72">
     <!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
     <h1 class="h3 mb-3 font-weight-normal text-center">新規登録</h1>
+
+    <%= render 'shared/error_messages', model: f.object %>
+
     <!-- <label for="inputEmail" class="sr-only">Email address</label> -->
     <label for="inputEmail" class="sr-only">メールアドレス</label>
     <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> -->
-    <input type="email" id="inputEmail" class="form-control" placeholder="メールアドレス" required="" autofocus="">
+    <input type="email" name="user[email]" id="inputEmail" class="form-control" placeholder="メールアドレス" required=""
+      autofocus="">
     <!-- <label for="inputPassword" class="sr-only">Password</label> -->
     <label for="inputPassword" class="sr-only">パスワード</label>
     <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
-    <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" required="">
+    <input type="password" name="user[password]" id="inputPassword" class="form-control" placeholder="パスワード"
+      required="">
 
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <input class="form-check-input" type="radio" name="user[relationship_id]" id="inlineRadio1" value="ママ">
       <label class="form-check-label" for="inlineRadio1">ママ</label>
     </div>
     &emsp;
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+      <input class="form-check-input" type="radio" name="user[relationship_id]" id="inlineRadio2" value="パパ">
       <label class="form-check-label" for="inlineRadio2">パパ</label>
     </div>
     &emsp;
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+      <input class="form-check-input" type="radio" name="user[relationship_id]" id="inlineRadio3" value="その他">
       <label class="form-check-label" for="inlineRadio3">その他</label>
     </div>
     <br>
@@ -159,4 +165,6 @@
   <%
 =end%>
 </div>
+<% end %>
+
 <%= render "shared/second-footer"%>
