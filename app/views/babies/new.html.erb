@@ -10,13 +10,9 @@
     </h2>
     <br>
 
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @baby, url: babies_path, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
-
-    <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
+    <%= render 'shared/error_messages', model: @baby %>
 
     <div class="new-items">
 
@@ -61,7 +57,7 @@
 =end%>
 
       <div class="text-center">
-        <button type="button" class="btn btn-danger btn-lg">登録する</button>
+        <button type="submit" class="btn btn-danger btn-lg">登録する</button>
       </div>
 
     </div>
