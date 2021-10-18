@@ -30,12 +30,14 @@
     </h4>
     <br>
 
-    <%# 登録されている赤ちゃんが全員リストに表示されるようにする。 %>
     <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action">Baby太郎</a>
-      <a href="#" class="list-group-item list-group-item-action">Baby花子</a>
+      <% @babies.each do |baby| %>
+      <a href="#" class="list-group-item list-group-item-action">
+        <%= baby.nickname %>
+      </a>
+      <% end %>
     </div>
-    <%# //登録されている赤ちゃんが全員リストに表示されるようにする。 %>
+
     <br>
     <div class="text-center">新たに赤ちゃんを登録する場合は<a href="/babies/new" class="alert-link">こちら</a></div>
 
