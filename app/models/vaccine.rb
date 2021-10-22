@@ -1,4 +1,6 @@
 class Vaccine < ApplicationRecord
+  has_many :vaccination_lists
+
   with_options presence: true do
     validates :name
     validates :kind_id
