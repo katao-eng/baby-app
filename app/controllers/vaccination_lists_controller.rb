@@ -3,9 +3,14 @@ class VaccinationListsController < ApplicationController
   # before_action :move_to_baby_new, only: [:index]
 
   def index
+    @baby = Baby.find(params[:baby_id])
   end
 
-  # private
+  private
+
+  # def baby_params
+  #   params.require(:baby).permit(:nickname, :birthday).merge(baby_id: params[:baby_id])
+  # end
 
   # def set_baby
   #   @baby = Baby.find(params[:baby_id])

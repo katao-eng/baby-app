@@ -32,9 +32,7 @@
 
     <div class="list-group">
       <% @babies.each do |baby| %>
-      <a href="#" class="list-group-item list-group-item-action">
-        <%= baby.nickname %>
-      </a>
+      <%= link_to baby.nickname, baby_vaccination_lists_path(baby.id), class: "list-group-item list-group-item-action" %>
       <% end %>
     </div>
 
