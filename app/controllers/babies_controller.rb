@@ -1,6 +1,6 @@
 class BabiesController < ApplicationController
   def index
-    @babies = Baby.all
+    @babies = Baby.where(user_id: current_user.id)
     if @babies.empty?
       redirect_to new_baby_path
     end  
