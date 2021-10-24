@@ -6,33 +6,66 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Vaccine.create(name: "B型肝炎（１回目）", kind_id: 0)
-Vaccine.create(name: "B型肝炎（２回目）", kind_id: 0)
-Vaccine.create(name: "B型肝炎（３回目）", kind_id: 0)
-Vaccine.create(name: "ロタウイルス（１回目）", kind_id: 2)
-Vaccine.create(name: "ロタウイルス（２回目）", kind_id: 2)
-Vaccine.create(name: "ロタウイルス（３回目）", kind_id: 2)
-Vaccine.create(name: "ヒブ（１回目）", kind_id: 0)
-Vaccine.create(name: "ヒブ（２回目）", kind_id: 0)
-Vaccine.create(name: "ヒブ（３回目）", kind_id: 0)
-Vaccine.create(name: "ヒブ（４回目）", kind_id: 0)
-Vaccine.create(name: "小児用肺炎球菌（１回目）", kind_id: 0)
-Vaccine.create(name: "小児用肺炎球菌（２回目）", kind_id: 0)
-Vaccine.create(name: "小児用肺炎球菌（３回目）", kind_id: 0)
-Vaccine.create(name: "小児用肺炎球菌（４回目）", kind_id: 0)
-Vaccine.create(name: "四種混合（１回目）", kind_id: 0)
-Vaccine.create(name: "四種混合（２回目）", kind_id: 0)
-Vaccine.create(name: "四種混合（３回目）", kind_id: 0)
-Vaccine.create(name: "四種混合（４回目）", kind_id: 0)
-Vaccine.create(name: "BCG（１回目）", kind_id: 1)
-Vaccine.create(name: "麻しん・風しん（１回目）", kind_id: 1)
-Vaccine.create(name: "麻しん・風しん（２回目）", kind_id: 1)
-Vaccine.create(name: "水ぼうそう（１回目）", kind_id: 1)
-Vaccine.create(name: "水ぼうそう（２回目）", kind_id: 1)
-Vaccine.create(name: "日本脳炎（１回目）", kind_id: 0)
-Vaccine.create(name: "日本脳炎（２回目）", kind_id: 0)
-Vaccine.create(name: "日本脳炎（３回目）", kind_id: 0)
-Vaccine.create(name: "日本脳炎（４回目）", kind_id: 0)
-Vaccine.create(name: "HPV（１回目）", kind_id: 0)
-Vaccine.create(name: "HPV（２回目）", kind_id: 0)
-Vaccine.create(name: "HPV（３回目）", kind_id: 0)
+# Vaccine.create(name: "B型肝炎（１回目）", kind_id: 0)
+# Vaccine.create(name: "B型肝炎（２回目）", kind_id: 0)
+# Vaccine.create(name: "B型肝炎（３回目）", kind_id: 0)
+# Vaccine.create(name: "ロタウイルス（１回目）", kind_id: 2)
+# Vaccine.create(name: "ロタウイルス（２回目）", kind_id: 2)
+# Vaccine.create(name: "ロタウイルス（３回目）", kind_id: 2)
+# Vaccine.create(name: "ヒブ（１回目）", kind_id: 0)
+# Vaccine.create(name: "ヒブ（２回目）", kind_id: 0)
+# Vaccine.create(name: "ヒブ（３回目）", kind_id: 0)
+# Vaccine.create(name: "ヒブ（４回目）", kind_id: 0)
+# Vaccine.create(name: "小児用肺炎球菌（１回目）", kind_id: 0)
+# Vaccine.create(name: "小児用肺炎球菌（２回目）", kind_id: 0)
+# Vaccine.create(name: "小児用肺炎球菌（３回目）", kind_id: 0)
+# Vaccine.create(name: "小児用肺炎球菌（４回目）", kind_id: 0)
+# Vaccine.create(name: "四種混合（１回目）", kind_id: 0)
+# Vaccine.create(name: "四種混合（２回目）", kind_id: 0)
+# Vaccine.create(name: "四種混合（３回目）", kind_id: 0)
+# Vaccine.create(name: "四種混合（４回目）", kind_id: 0)
+# Vaccine.create(name: "BCG（１回目）", kind_id: 1)
+# Vaccine.create(name: "麻しん・風しん（１回目）", kind_id: 1)
+# Vaccine.create(name: "麻しん・風しん（２回目）", kind_id: 1)
+# Vaccine.create(name: "水ぼうそう（１回目）", kind_id: 1)
+# Vaccine.create(name: "水ぼうそう（２回目）", kind_id: 1)
+# Vaccine.create(name: "日本脳炎（１回目）", kind_id: 0)
+# Vaccine.create(name: "日本脳炎（２回目）", kind_id: 0)
+# Vaccine.create(name: "日本脳炎（３回目）", kind_id: 0)
+# Vaccine.create(name: "日本脳炎（４回目）", kind_id: 0)
+# Vaccine.create(name: "HPV（１回目）", kind_id: 0)
+# Vaccine.create(name: "HPV（２回目）", kind_id: 0)
+# Vaccine.create(name: "HPV（３回目）", kind_id: 0)
+
+Vaccine.first_or_create([
+  { id: 1, name: "B型肝炎（１回目）", kind_id: 0 },
+  { id: 2, name: "B型肝炎（２回目）", kind_id: 0 },
+  { id: 3, name: "B型肝炎（３回目）", kind_id: 0 },
+  { id: 4, name: "ロタウイルス（１回目）", kind_id: 2 },
+  { id: 5, name: "ロタウイルス（２回目）", kind_id: 2 },
+  { id: 6, name: "ロタウイルス（３回目）", kind_id: 2 },
+  { id: 7, name: "ヒブ（１回目）", kind_id: 0 },
+  { id: 8, name: "ヒブ（２回目）", kind_id: 0 },
+  { id: 9, name: "ヒブ（３回目）", kind_id: 0 },
+  { id: 10, name: "ヒブ（４回目）", kind_id: 0 },
+  { id: 11, name: "小児用肺炎球菌（１回目）", kind_id: 0 },
+  { id: 12, name: "小児用肺炎球菌（２回目）", kind_id: 0 },
+  { id: 13, name: "小児用肺炎球菌（３回目）", kind_id: 0 },
+  { id: 14, name: "小児用肺炎球菌（４回目）", kind_id: 0 },
+  { id: 15, name: "四種混合（１回目）", kind_id: 0 },
+  { id: 16, name: "四種混合（２回目）", kind_id: 0 },
+  { id: 17, name: "四種混合（３回目）", kind_id: 0 },
+  { id: 18, name: "四種混合（４回目）", kind_id: 0 },
+  { id: 19, name: "BCG（１回目）", kind_id: 1 },
+  { id: 20, name: "麻しん・風しん（１回目）", kind_id: 1 },
+  { id: 21, name: "麻しん・風しん（２回目）", kind_id: 1 },
+  { id: 22, name: "水ぼうそう（１回目）", kind_id: 1 },
+  { id: 23, name: "水ぼうそう（２回目）", kind_id: 1 },
+  { id: 24, name: "日本脳炎（１回目）", kind_id: 0 },
+  { id: 25, name: "日本脳炎（２回目）", kind_id: 0 },
+  { id: 26, name: "日本脳炎（３回目）", kind_id: 0 },
+  { id: 27, name: "日本脳炎（４回目）", kind_id: 0 },
+  { id: 28, name: "HPV（１回目）", kind_id: 0 },
+  { id: 29, name: "HPV（２回目）", kind_id: 0 },
+  { id: 30, name: "HPV（３回目）", kind_id: 0 }
+])
