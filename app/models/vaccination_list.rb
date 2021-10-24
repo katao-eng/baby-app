@@ -5,8 +5,8 @@ class VaccinationList < ApplicationRecord
   with_options presence: true do
     validates :start_date
     validates :end_date
-    validates :status
     validates :baby_id
     validates :vaccine_id
   end
+  validates :status, inclusion: { in: [true, false] }
 end
