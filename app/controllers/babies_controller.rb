@@ -1,6 +1,9 @@
 class BabiesController < ApplicationController
   def index
     @babies = Baby.all
+    if @babies.empty?
+      redirect_to new_baby_path
+    end  
   end
 
   def new
