@@ -19,6 +19,7 @@ class BabiesController < ApplicationController
   def create
     @baby = Baby.new(baby_params)
     if @baby.save
+      cookies[:baby_id] = @baby.id
       redirect_to root_path
     else
       render :new
