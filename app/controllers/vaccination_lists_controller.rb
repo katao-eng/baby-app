@@ -4,6 +4,7 @@ class VaccinationListsController < ApplicationController
 
   def index
     @baby = Baby.find(params[:baby_id])
+    cookies[:baby_id] = @baby.id
   end
 
   private
