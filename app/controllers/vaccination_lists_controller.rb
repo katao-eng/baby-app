@@ -18,7 +18,7 @@ class VaccinationListsController < ApplicationController
   # end
 
   # def move_to_baby_new
-  #   if @baby.id == nil
+  #   if @baby.id.empty?
   #     redirect_to new_baby_path
   #   end
   # end
