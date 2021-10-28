@@ -8,5 +8,4 @@ class VaccinationList < ApplicationRecord
     validates :baby_id
     validates :vaccine_id
   end
-  validates :status, inclusion: { in: [true, false] }
 end

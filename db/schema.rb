@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_020446) do
+ActiveRecord::Schema.define(version: 2021_10_28_205339) do
 
   create_table "babies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_020446) do
     t.date "date"
     t.date "start_date", null: false
     t.date "end_date", null: false
-    t.boolean "status", null: false
     t.bigint "baby_id", null: false
     t.bigint "vaccine_id", null: false
     t.index ["baby_id"], name: "index_vaccination_lists_on_baby_id"

@@ -67,7 +67,6 @@ class BabiesController < ApplicationController
     {
       start_date: @baby.birthday + birthday_plus_start_date,
       end_date: @baby.birthday + birthday_plus_end_date,
-      status: 0,
       baby_id: @baby.id,
       vaccine_id: vaccine_id
     }
