@@ -5,9 +5,9 @@ class VaccinationListsController < ApplicationController
   def index
     @baby = Baby.find(params[:baby_id])
     cookies[:baby_id] = @baby.id
-    @type_b_1st = VaccinationList.where(baby_id: @baby.id, vaccine_id: 1)
-    @type_b_2nd = VaccinationList.where(baby_id: @baby.id, vaccine_id: 2)
-    @type_b_3rd = VaccinationList.where(baby_id: @baby.id, vaccine_id: 3)
+    @type_b_1st = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 1)
+    @type_b_2nd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 2)
+    @type_b_3rd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 3)
   end
 
   private
