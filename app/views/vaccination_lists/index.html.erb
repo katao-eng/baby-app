@@ -33,13 +33,25 @@
       <li class="list-group-item list-group-item-warning">B型肝炎 &emsp; &emsp; &emsp; &nbsp; &thinsp; <div
           class="btn-group" role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <% if @type_b_1st.date == nil %>
+            <%= link_to("#") do %>
+            <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
+            <% end %>
+            <% elsif @type_b_1st.date >= Date.today %>
+            <%= link_to("#") do %>
+            <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
+            <% end %>
+            <% else %>
+            <%= link_to("#") do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
+            <% end %>
+            <% end %>
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
           </div>
         </div>
       </li>
-      <li class="list-group-item list-group-item-light">ロタウイルス &emsp; &emsp; <div class="btn-group" role="group"
+      <li class="list-group-item list-group-item-light">ロタウイルス &emsp; &nbsp; &nbsp; <div class="btn-group" role="group"
           aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>

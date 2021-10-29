@@ -5,6 +5,9 @@ class VaccinationListsController < ApplicationController
   def index
     @baby = Baby.find(params[:baby_id])
     cookies[:baby_id] = @baby.id
+    @type_b_1st = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 1)
+    @type_b_2nd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 2)
+    @type_b_3rd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 3)
   end
 
   private
@@ -18,7 +21,7 @@ class VaccinationListsController < ApplicationController
   # end
 
   # def move_to_baby_new
-  #   if @baby.id == nil
+  #   if @baby.id.empty?
   #     redirect_to new_baby_path
   #   end
   # end
