@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   root to: "babies#index"
   resources :babies, only: [:index, :new, :create] do
-    resources :vaccination_lists, only: [:index]
+    resources :vaccination_lists, only: [:index, :new, :create]
     get :myfamily, on: :collection
   end
 end

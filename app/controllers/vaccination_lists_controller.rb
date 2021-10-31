@@ -10,6 +10,14 @@ class VaccinationListsController < ApplicationController
     @type_b_3rd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 3)
   end
 
+  def new
+    
+  end
+
+  def create
+    
+  end
+
   private
 
   # def baby_params
