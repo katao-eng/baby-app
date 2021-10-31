@@ -43,7 +43,6 @@
 | date       | date       |                                |
 | start_date | date       | null: false                    |
 | end_date   | date       | null: false                    |
-| status     | boolean    | null: false                    |
 | baby       | references | null: false, foreign_key: true |
 | vaccine    | references | null: false, foreign_key: true |
 
