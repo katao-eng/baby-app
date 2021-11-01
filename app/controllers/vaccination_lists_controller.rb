@@ -10,11 +10,11 @@ class VaccinationListsController < ApplicationController
     @type_b_3rd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 3)
   end
 
-  def new
+  def set
     
   end
 
-  def create
+  def update
     
   end
 

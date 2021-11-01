@@ -34,7 +34,7 @@
           class="btn-group" role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <% if @type_b_1st.date == nil %>
-            <%= link_to new_baby_vaccination_list_path do %>
+            <%= link_to("#") do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
             <% elsif @type_b_1st.date >= Date.today %>
