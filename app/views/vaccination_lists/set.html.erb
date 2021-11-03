@@ -4,7 +4,7 @@
 
   </header>
   <div class="items-sell-main">
-    <%= render 'shared/error_messages', model:@vaccination_list %>
+    <%= render 'shared/error_messages', model: @vaccination_list %>
     <h2 class="text-center">
       ワクチン接種予定入力
     </h2>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
+    <%= form_with model: @vaccination_list, url: generate_baby_vaccination_list_path, local: true do |f| %>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">

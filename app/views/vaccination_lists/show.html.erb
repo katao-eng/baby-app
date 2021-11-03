@@ -86,9 +86,13 @@
 
       <br><br>
       <div class="text-center">
+        <%= link_to edit_baby_vaccination_list_path(params[:id]) do %>
         <button type="button" class="btn btn-info btn-lg">内容の変更</button>
+        <% end %>
         &emsp; &emsp; &emsp; &emsp; &emsp;
+        <%= link_to ("#") do %>
         <button type="button" class="btn btn-danger btn-lg">接種日の削除</button>
+        <% end %>
         &emsp; &emsp; &emsp; &emsp; &emsp;
         <%= link_to baby_vaccination_lists_path do %>
         <button type="button" class="btn btn-secondary btn-lg">もどる</button>

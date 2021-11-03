@@ -6,24 +6,27 @@ app/assets/stylesheets/items/new.css %>
     <%= link_to image_tag('baby_app_logo.001.png' , size: '185x50'), "/" %>
   </header>
   <div class="items-sell-main">
+    <%= render 'shared/error_messages', model: @vaccination_list %>
     <h2 class="text-center">
       ワクチン接種予定変更
     </h2>
     <br>
     <div class="card w-100">
       <div class="card-body">
-        <h3 class="text-center">B型肝炎（１回目）</h3>
+        <h3 class="text-center">
+          <%= @vaccination_list.vaccine.name %>
+        </h3>
         <hr>
         <h5 class="text-center">◎接種可能期間◎</h5>
-        <h4 class="text-center"><span>2021年12月15日</span>〜<span>2022年3月15日</span></h4>
+        <h4 class="text-center"><span>
+            <%= @vaccination_list.start_date.strftime("%Y年%m月%d日") %>
+          </span>〜<span>
+            <%= @vaccination_list.end_date.strftime("%Y年%m月%d日") %>
+          </span></h4>
       </div>
     </div>
 
-    <%= form_with local: true do |f| %>
-
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
+    <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
@@ -63,7 +66,7 @@ app/assets/stylesheets/items/new.css %>
       <div class='input-birth-wrap'>
         <%= raw sprintf(
                   f.date_select(
-                    :hoge,
+                    :date,
                     class:'select-birth',
                     id:"birth-date",
                     use_month_numbers: true,
@@ -216,9 +219,11 @@ app/assets/stylesheets/items/new.css %>
 
       <br>
       <div class="text-center">
-        <button type="button" class="btn btn-danger btn-lg">変更する</button>
+        <button type="submit" class="btn btn-danger btn-lg">変更する</button>
         &emsp; &emsp; &emsp; &emsp; &emsp;
+        <%= link_to baby_vaccination_list_path(params[:id]) do %>
         <button type="button" class="btn btn-secondary btn-lg">もどる</button>
+        <% end %>
       </div>
 
     </div>
