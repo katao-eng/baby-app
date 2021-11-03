@@ -2,6 +2,7 @@ class VaccinationListsController < ApplicationController
   # before_action :set_baby, only: [:index]
   # before_action :move_to_baby_new, only: [:index]
   before_action :set_vaccination_list, only: [:set, :update]
+  before_action :set_vaccine, only: [:set, :update]
 
   def index
     @baby = Baby.find(params[:baby_id])
@@ -12,7 +13,6 @@ class VaccinationListsController < ApplicationController
   end
 
   def set
-    @vaccine = Vaccine.find(@vaccination_list.vaccine_id)
   end
 
   def update
@@ -31,6 +31,10 @@ class VaccinationListsController < ApplicationController
 
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
+  end
+
+  def set_vaccine
+    @vaccine = Vaccine.find(@vaccination_list.vaccine_id)
   end
 
   # def baby_params

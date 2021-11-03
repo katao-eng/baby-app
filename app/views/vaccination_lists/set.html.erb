@@ -4,6 +4,7 @@
 
   </header>
   <div class="items-sell-main">
+    <%= render 'shared/error_messages', model:@vaccination_list %>
     <h2 class="text-center">
       ワクチン接種予定入力
     </h2>
@@ -24,10 +25,6 @@
     </div>
 
     <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
-
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
