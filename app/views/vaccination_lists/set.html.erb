@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
+    <%= form_with model: @vaccination_list, url: generate_baby_vaccination_list_path, local: true do |f| %>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">

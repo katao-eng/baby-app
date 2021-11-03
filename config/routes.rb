@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :babies, only: [:index, :new, :create] do
     get :myfamily, on: :collection
     resources :vaccination_lists, only: [:index, :show, :edit, :update] do
-      get :set, on: :member
+      member do
+        get 'set'
+        patch 'generate'
+      end
     end
   end
 end
