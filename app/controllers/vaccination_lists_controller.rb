@@ -15,6 +15,10 @@ class VaccinationListsController < ApplicationController
   def set
   end
 
+  def show
+    
+  end
+
   def update
     if @vaccination_list.update(vaccination_list_params)
       redirect_to baby_vaccination_lists_path

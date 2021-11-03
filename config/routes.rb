@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: "babies#index"
   resources :babies, only: [:index, :new, :create] do
     get :myfamily, on: :collection
-    resources :vaccination_lists, only: [:index, :update] do
+    resources :vaccination_lists, only: [:index, :show, :update] do
       get :set, on: :member
     end
   end
