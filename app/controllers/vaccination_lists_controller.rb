@@ -1,8 +1,8 @@
 class VaccinationListsController < ApplicationController
   # before_action :set_baby, only: [:index]
   # before_action :move_to_baby_new, only: [:index]
-  before_action :set_vaccination_list, only: [:set, :update]
-  before_action :set_vaccine, only: [:set, :update]
+  before_action :set_vaccination_list, only: [:set, :show, :update]
+  before_action :set_vaccine, only: [:set, :show, :update]
 
   def index
     @baby = Baby.find(params[:baby_id])
@@ -16,7 +16,6 @@ class VaccinationListsController < ApplicationController
   end
 
   def show
-    
   end
 
   def update
