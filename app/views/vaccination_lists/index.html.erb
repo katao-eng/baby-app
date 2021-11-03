@@ -38,11 +38,11 @@
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
             <% elsif @type_b_1st.date >= Date.today %>
-            <%= link_to("#") do %>
+            <%= link_to baby_vaccination_list_path(id: @type_b_1st.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to("#") do %>
+            <%= link_to baby_vaccination_list_path(id: @type_b_1st.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
