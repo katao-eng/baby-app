@@ -17,7 +17,7 @@
         <div class="card-body">
           <br>
           <h4 class="text-center"><b>
-              <%= @vaccine.name %>
+              <%= @vaccination_list.vaccine.name %>
             </b></h4>
           <br>
           <p class="text-center">（ 接種可能期間：<span>
@@ -44,10 +44,19 @@
           <br>
           <h4 class="text-center"><u>同時接種予定</u></h4>
           <br>
-          <p class="text-center">ヒブ（２回目）</p>
+          <% if @vaccination_lists.empty? %>
+          <p class="text-center">同時接種予定のワクチンはありません</p>
+          <% else %>
+          <% @vaccination_lists.each do |vaccination_list| %>
+          <p class="text-center">
+            <%= vaccination_list.vaccine.name %>
+          </p>
+          <% end %>
+          <% end %>
+          <%# <p class="text-center">ヒブ（２回目）</p>
           <p class="text-center">小児用肺炎球菌（１回目）</p>
           <p class="text-center">四種混合（３回目）</p>
-          <p class="text-center">BCG（１回目）</p>
+          <p class="text-center">BCG（１回目）</p> %>
           <br>
         </div>
       </div>
