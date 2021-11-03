@@ -17,6 +17,6 @@ class VaccinationList < ApplicationRecord
     unless date == nil
       errors.add(:date, "は接種可能期間内で指定してください。") unless 
       self.start_date <= self.date && self.end_date >= self.date
-      end
+    end
   end
 end
