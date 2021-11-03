@@ -1,7 +1,7 @@
 class VaccinationListsController < ApplicationController
   # before_action :set_baby, only: [:index]
   # before_action :move_to_baby_new, only: [:index]
-  before_action :set_vaccination_list, only: [:set, :show, :update]
+  before_action :set_vaccination_list, only: [:set, :show, :edit, :update]
 
   def index
     @baby = Baby.find(params[:baby_id])
@@ -16,6 +16,9 @@ class VaccinationListsController < ApplicationController
 
   def show
     @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
+  end
+
+  def edit
   end
 
   def update
