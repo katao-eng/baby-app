@@ -1,6 +1,7 @@
 class VaccinationListsController < ApplicationController
   # before_action :set_baby, only: [:index]
   # before_action :move_to_baby_new, only: [:index]
+  before_action :set_vaccination_list, only: [:set, :update]
 
   def index
     @baby = Baby.find(params[:baby_id])
@@ -11,14 +12,26 @@ class VaccinationListsController < ApplicationController
   end
 
   def set
-    
+    @vaccine = Vaccine.find(@vaccination_list.vaccine_id)
   end
 
   def update
-    
+    if @vaccination_list.update(vaccination_list_params)
+      redirect_to baby_vaccination_lists_path
+    else
+      render :set
+    end
   end
 
   private
+
+  def vaccination_list_params
+    params.require(:vaccination_list).permit(:date).merge(baby_id: params[:baby_id], vaccine_id: @vaccination_list.vaccine_id)
+  end
+
+  def set_vaccination_list
+    @vaccination_list = VaccinationList.find(params[:id])
+  end
 
   # def baby_params
   #   params.require(:baby).permit(:nickname, :birthday).merge(baby_id: params[:baby_id])

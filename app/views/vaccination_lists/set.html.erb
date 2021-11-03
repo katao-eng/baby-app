@@ -10,14 +10,20 @@
     <br>
     <div class="card w-100">
       <div class="card-body">
-        <h3 class="text-center">B型肝炎（１回目）</h3>
+        <h3 class="text-center">
+          <%= @vaccine.name %>
+        </h3>
         <hr>
         <h5 class="text-center">◎接種可能期間◎</h5>
-        <h4 class="text-center"><span>2021年12月15日</span>〜<span>2022年3月15日</span></h4>
+        <h4 class="text-center"><span>
+            <%= @vaccination_list.start_date.strftime("%Y年%m月%d日") %>
+          </span>〜<span>
+            <%= @vaccination_list.end_date.strftime("%Y年%m月%d日") %>
+          </span></h4>
       </div>
     </div>
 
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
     <%# render 'shared/error_messages', model: f.object %>
@@ -61,7 +67,7 @@
       <div class='input-birth-wrap'>
         <%= raw sprintf(
                   f.date_select(
-                    :hoge,
+                    :date,
                     class:'select-birth',
                     id:"birth-date",
                     use_month_numbers: true,
@@ -214,7 +220,7 @@
 
       <br>
       <div class="text-center">
-        <button type="button" class="btn btn-danger btn-lg">登録する</button>
+        <button type="submit" class="btn btn-danger btn-lg">登録する</button>
         &emsp; &emsp; &emsp; &emsp; &emsp;
         <button type="button" class="btn btn-secondary btn-lg">もどる</button>
       </div>
