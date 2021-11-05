@@ -26,7 +26,6 @@
 
     <%= form_with model: @vaccination_list, url: generate_baby_vaccination_list_path, local: true do |f| %>
 
-    <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
       <div class="weight-bold-text">
         同時に接種するワクチンを選択
@@ -45,7 +44,6 @@
         <% end %>
       </ul>
     </div>
-    <%# //接種状況に応じてチェックボックスが変わるように実装する。 %>
 
     <div class="new-items">
       <div class="weight-bold-text">
