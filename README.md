@@ -40,7 +40,7 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| date       | date       |                                |
+| date       | date       | null: false (only update)      |
 | start_date | date       | null: false                    |
 | end_date   | date       | null: false                    |
 | baby       | references | null: false, foreign_key: true |
