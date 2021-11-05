@@ -12,6 +12,7 @@ class VaccinationListsController < ApplicationController
   end
 
   def set
+    @vaccination_lists = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date)
   end
 
   def generate

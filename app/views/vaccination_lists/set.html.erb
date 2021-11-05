@@ -32,26 +32,17 @@
         同時に接種するワクチンを選択
       </div>
       <ul class="list-group">
+        <% @vaccination_lists.each do |vaccination_list| %>
+        <% unless vaccination_list.id == @vaccination_list.id %>
         <li class="list-group-item">
           &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          ロタウイルス（１回目）
+          <label>
+            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+            <%= vaccination_list.vaccine.name %>
+          </label>
         </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          ヒブ（３回目）
-        </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          小児用肺炎球菌（１回目）
-        </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          四種混合（２回目）
-        </li>
+        <% end %>
+        <% end %>
       </ul>
     </div>
     <%# //接種状況に応じてチェックボックスが変わるように実装する。 %>
