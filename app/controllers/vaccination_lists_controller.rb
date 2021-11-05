@@ -39,7 +39,7 @@ class VaccinationListsController < ApplicationController
 
   def reset
     @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
-    @vaccination_lists.update_all(date: "")
+    @vaccination_lists.update_all(date: nil)
     redirect_to baby_vaccination_lists_path
   end
 
