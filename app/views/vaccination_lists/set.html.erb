@@ -24,13 +24,16 @@
       </div>
     </div>
 
-    <%= form_with model: @vaccination_list, url: generate_baby_vaccination_list_path, local: true do |f| %>
+    <%= form_with url: generate_baby_vaccination_list_path, local: true do |f| %>
 
     <div class="new-items">
       <div class="weight-bold-text">
         同時に接種するワクチンを選択
       </div>
       <ul class="list-group">
+        <%= f.collection_check_boxes :vaccination_lists, @vaccination_lists, :id, :vaccine, class: "list-group-item" %>
+        <%
+=begin%>
         <% @vaccination_lists.each do |vaccination_list| %>
         <% unless vaccination_list.id == @vaccination_list.id %>
         <li class="list-group-item">
@@ -42,6 +45,8 @@
         </li>
         <% end %>
         <% end %>
+        <%
+=end%>
       </ul>
     </div>
 
