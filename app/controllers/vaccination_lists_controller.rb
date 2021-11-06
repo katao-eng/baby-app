@@ -1,6 +1,4 @@
 class VaccinationListsController < ApplicationController
-  # before_action :set_baby, only: [:index]
-  # before_action :move_to_baby_new, only: [:index]
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
 
   def index
@@ -12,6 +10,7 @@ class VaccinationListsController < ApplicationController
   end
 
   def set
+    @vaccination_lists = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date)
   end
 
   def generate
@@ -39,7 +38,7 @@ class VaccinationListsController < ApplicationController
 
   def reset
     @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
-    @vaccination_lists.update_all(date: "")
+    @vaccination_lists.update_all(date: nil)
     redirect_to baby_vaccination_lists_path
   end
 
@@ -52,18 +51,4 @@ class VaccinationListsController < ApplicationController
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
   end
-
-  # def baby_params
-  #   params.require(:baby).permit(:nickname, :birthday).merge(baby_id: params[:baby_id])
-  # end
-
-  # def set_baby
-  #   @baby = Baby.find(params[:baby_id])
-  # end
-
-  # def move_to_baby_new
-  #   if @baby.id.empty?
-  #     redirect_to new_baby_path
-  #   end
-  # end
 end
