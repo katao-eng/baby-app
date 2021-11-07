@@ -7,7 +7,7 @@ class VaccinationListsController < ApplicationController
     @type_b_1st = select_vaccine(1)
     @type_b_2nd = select_vaccine(2)
     @type_b_3rd = select_vaccine(3)
-    @rota_1sr = select_vaccine(4)
+    @rota_1st = select_vaccine(4)
     @rota_2nd = select_vaccine(5)
     @rota_3rd = select_vaccine(6)
     @hib_1st = select_vaccine(7)
