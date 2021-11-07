@@ -31,11 +31,17 @@
         同時に接種するワクチンを選択
       </div>
       <ul class="list-group">
-        <%= f.collection_check_boxes :vaccination_lists, @vaccination_lists, :id, :vaccine, class: "list-group-item" %>
-        <%
+        <li class="list-group-item">
+          <% if @vaccines.empty? %>
+          <p class="text-center">同時に接種可能なワクチンはありません</p>
+          <% else %>
+          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1" %>
+          <% end %>
+          <%
 =begin%>
-        <% @vaccination_lists.each do |vaccination_list| %>
-        <% unless vaccination_list.id == @vaccination_list.id %>
+
+          <% @vaccination_lists.each do |vaccination_list| %>
+          <% unless vaccination_list.id == @vaccination_list.id %>
         <li class="list-group-item">
           &emsp;
           <label>
@@ -47,6 +53,8 @@
         <% end %>
         <%
 =end%>
+
+        </li>
       </ul>
     </div>
 
