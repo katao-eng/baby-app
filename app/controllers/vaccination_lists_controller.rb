@@ -31,6 +31,9 @@ class VaccinationListsController < ApplicationController
     @japanese_encephalitis_2nd = select_vaccine(25)
     @japanese_encephalitis_3rd = select_vaccine(26)
     @japanese_encephalitis_4th = select_vaccine(27)
+    @hpv_1st = select_vaccine(28)
+    @hpv_2nd = select_vaccine(29)
+    @hpv_3rd =select_vaccine(30)
   end
 
   def set
