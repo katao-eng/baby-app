@@ -18,6 +18,10 @@ class VaccinationListsController < ApplicationController
     @haien_2nd = select_vaccine(12)
     @haien_3rd = select_vaccine(13)
     @haien_4th = select_vaccine(14)
+    @four_kinds_1st = select_vaccine(15)
+    @four_kinds_2nd = select_vaccine(16)
+    @four_kinds_3rd = select_vaccine(17)
+    @four_kinds_4th = select_vaccine(18)
   end
 
   def set
