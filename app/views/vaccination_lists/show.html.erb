@@ -86,11 +86,11 @@
 
       <br><br>
       <div class="text-center">
-        <%= link_to edit_baby_vaccination_list_path(params[:id]) do %>
+        <%= link_to edit_baby_vaccination_list_path(params[:baby_id]) do %>
         <button type="button" class="btn btn-info btn-lg">内容の変更</button>
         <% end %>
         &emsp; &emsp; &emsp; &emsp; &emsp;
-        <%= link_to reset_baby_vaccination_list_path(params[:id]), method: :patch, data: { confirm: "同時接種する他のワクチンの接種日も削除されます。\n削除してよろしいですか？"} do %>
+        <%= link_to reset_baby_vaccination_list_path(params[:baby_id]), method: :patch, data: { confirm: "同時接種する他のワクチンの接種日も削除されます。\n削除してよろしいですか？"} do %>
         <button type="button" class="btn btn-danger btn-lg">接種日の削除</button>
         <% end %>
         &emsp; &emsp; &emsp; &emsp; &emsp;
