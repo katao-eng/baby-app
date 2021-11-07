@@ -50,8 +50,4 @@ class VaccinationListsController < ApplicationController
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
   end
-
-  def select_vaccine(vaccine_id)
-    VaccinationList.find_by(baby_id: @baby.id, vaccine_id: vaccine_id)
-  end
 end
