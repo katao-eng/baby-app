@@ -4,9 +4,12 @@ class VaccinationListsController < ApplicationController
   def index
     @baby = Baby.find(params[:baby_id])
     cookies[:baby_id] = @baby.id
-    @type_b_1st = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 1)
-    @type_b_2nd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 2)
-    @type_b_3rd = VaccinationList.find_by(baby_id: @baby.id, vaccine_id: 3)
+    @type_b_1st = select_vaccine(1)
+    @type_b_2nd = select_vaccine(2)
+    @type_b_3rd = select_vaccine(3)
+    @rota_1sr = select_vaccine(4)
+    @rota_2nd = select_vaccine(5)
+    @rota_3rd = select_vaccine(6)
   end
 
   def set
@@ -14,6 +17,7 @@ class VaccinationListsController < ApplicationController
   end
 
   def generate
+    @vaccination_lists = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date)
     if @vaccination_list.update(vaccination_list_params)
       redirect_to baby_vaccination_lists_path
     else
@@ -50,5 +54,9 @@ class VaccinationListsController < ApplicationController
 
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
+  end
+
+  def select_vaccine(vaccine_id)
+    VaccinationList.find_by(baby_id: @baby.id, vaccine_id: vaccine_id)
   end
 end
