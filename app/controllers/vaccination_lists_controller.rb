@@ -22,7 +22,9 @@ class VaccinationListsController < ApplicationController
     @four_kinds_2nd = select_vaccine(16)
     @four_kinds_3rd = select_vaccine(17)
     @four_kinds_4th = select_vaccine(18)
-    @bcg = select_vaccine(19)
+    @bcg_1st = select_vaccine(19)
+    @mr_1st = select_vaccine(20)
+    @mr_2nd = select_vaccine(21)
   end
 
   def set
