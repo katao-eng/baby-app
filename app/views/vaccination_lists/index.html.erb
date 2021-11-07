@@ -8,19 +8,25 @@
       <li class="list-group-item list-group-item-warning">B型肝炎 &emsp; &emsp; &emsp; &nbsp; &thinsp; <div
           class="btn-group" role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @type_b_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @type_b_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 1 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @type_b_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @type_b_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @type_b_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
           </div>
@@ -29,19 +35,25 @@
       <li class="list-group-item list-group-item-light">ロタウイルス &emsp; &nbsp; &nbsp; <div class="btn-group" role="group"
           aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @rota_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @rota_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 4 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @rota_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @rota_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @rota_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
           </div>
         </div>
@@ -52,19 +64,25 @@
       <li class="list-group-item list-group-item-warning">ヒブ &emsp; &emsp; &emsp; &emsp; &emsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @hib_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @hib_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 7 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @hib_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @hib_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @hib_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-success">２回目&nbsp; 予定</button>
             <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
@@ -74,19 +92,25 @@
       <li class="list-group-item list-group-item-light">小児用肺炎球菌 &emsp; <div class="btn-group" role="group"
           aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @haien_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @haien_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 11 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @haien_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @haien_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @haien_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
@@ -96,19 +120,25 @@
       <li class="list-group-item list-group-item-warning">四種混合 &emsp; &emsp; &emsp; &nbsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @four_kinds_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @four_kinds_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 15 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @four_kinds_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @four_kinds_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @four_kinds_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
@@ -119,38 +149,50 @@
       <li class="list-group-item list-group-item-light">BCG &emsp; &emsp; &emsp; &emsp; &emsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @bcg_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @bcg_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 19 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @bcg_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @bcg_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @bcg_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
           </div>
         </div>
       </li>
       <li class="list-group-item list-group-item-warning">麻しん・風しん &emsp; <div class="btn-group" role="group"
           aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @mr_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @mr_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 20 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @mr_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @mr_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @mr_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
           </div>
         </div>
@@ -158,19 +200,25 @@
       <li class="list-group-item list-group-item-light">水ぼうそう &emsp; &emsp; &thinsp; &thinsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @suitou_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @suitou_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 22 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @suitou_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @suitou_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @suitou_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
           </div>
         </div>
@@ -178,19 +226,25 @@
       <li class="list-group-item list-group-item-warning">日本脳炎 &emsp; &emsp; &emsp; &thinsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @japanese_encephalitis_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @japanese_encephalitis_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 24 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @japanese_encephalitis_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @japanese_encephalitis_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @japanese_encephalitis_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
@@ -200,19 +254,25 @@
       <li class="list-group-item list-group-item-light">HPV &emsp; &emsp; &emsp; &emsp; &emsp; <div class="btn-group"
           role="group" aria-label="Basic mixed styles example">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <% if @hpv_1st.date == nil %>
-            <%= link_to set_baby_vaccination_list_path(id: @hpv_1st.id) do %>
+
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 28 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">１回目 &emsp; 未</button>
             <% end %>
-            <% elsif @hpv_1st.date >= Date.today %>
-            <%= link_to baby_vaccination_list_path(id: @hpv_1st.id) do %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-success">１回目&nbsp; 予定</button>
             <% end %>
             <% else %>
-            <%= link_to baby_vaccination_list_path(id: @hpv_1st.id) do %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-danger">１回目 &emsp; 済</button>
             <% end %>
             <% end %>
+            <% end %>
+            <% end %>
+
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
             <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
           </div>
