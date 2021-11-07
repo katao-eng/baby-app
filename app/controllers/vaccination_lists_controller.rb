@@ -10,6 +10,10 @@ class VaccinationListsController < ApplicationController
     @rota_1sr = select_vaccine(4)
     @rota_2nd = select_vaccine(5)
     @rota_3rd = select_vaccine(6)
+    @hib_1st = select_vaccine(7)
+    @hib_2nd = select_vaccine(8)
+    @hib_3rd = select_vaccine(9)
+    @hib_4th = select_vaccine(10)
   end
 
   def set
