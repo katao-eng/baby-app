@@ -1,5 +1,6 @@
 class VaccinationListsController < ApplicationController
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
+  before_action :set_vaccines, only: [:set, :generate]
 
   def index
     @baby = Baby.find(params[:baby_id])
@@ -8,13 +9,11 @@ class VaccinationListsController < ApplicationController
   end
 
   def set
-    vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
-    @vaccines = Vaccine.where(id: vaccination_ids)
   end
 
   def generate
-    vaccination_ids = params[:vaccination_ids] << @vaccination_list.vaccine_id.to_s
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], vaccine_id: vaccination_ids)
+    vaccine_ids = params[:vaccination_ids] << @vaccination_list.vaccine_id.to_s
+    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], vaccine_id: vaccine_ids)
     if @vaccination_lists.update(vaccination_ids_params)
       redirect_to baby_vaccination_lists_path
     else
@@ -55,5 +54,10 @@ class VaccinationListsController < ApplicationController
 
   def vaccination_ids_params
     params.permit(:date).merge(baby_id: params[:baby_id])
+  end
+
+  def set_vaccines
+    vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
+    @vaccines = Vaccine.where(id: vaccination_ids)
   end
 end
