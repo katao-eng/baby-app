@@ -14,30 +14,25 @@ class VaccinationListsController < ApplicationController
   def generate
     vaccine_ids = params[:vaccination_ids] << @vaccination_list.vaccine_id.to_s
     @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], vaccine_id: vaccine_ids)
-    vaccination_lists = []
+    generate_vaccination_lists = []
     vaccine_ids.each do |vaccine_id|
       unless vaccine_id == ""
-      vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
-      vaccination_list.assign_attributes(vaccination_ids_params)
-      vaccination_lists << vaccination_list
+      generate_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+      generate_vaccination_list.assign_attributes(vaccination_ids_params)
+      generate_vaccination_lists << generate_vaccination_list
       end
     end
-    vaccination_lists.each do |vaccination_list|
-      unless vaccination_list.valid?
+    generate_vaccination_lists.each do |generate_vaccination_list|
+      unless generate_vaccination_list.valid?
         flash.now[:alert] = "接種可能期間外のワクチンが含まれているか、接種（予定）日が未入力です！"
         render :set
         return
       end
     end
-    vaccination_lists.each do |vaccination_list|
-      vaccination_list.save
+    generate_vaccination_lists.each do |generate_vaccination_list|
+      generate_vaccination_list.save
     end
     redirect_to baby_vaccination_lists_path
-    # if @vaccination_lists.update(vaccination_ids_params)
-    #   redirect_to baby_vaccination_lists_path
-    # else
-    #   render :set
-    # end
   end
 
   def show
