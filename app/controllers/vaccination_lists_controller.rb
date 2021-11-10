@@ -24,6 +24,7 @@ class VaccinationListsController < ApplicationController
     end
     vaccination_lists.each do |vaccination_list|
       unless vaccination_list.valid?
+        flash.now[:alert] = "接種可能期間外のワクチンが含まれているか、接種（予定）日が未入力です！"
         render :set
         return
       end

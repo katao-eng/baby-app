@@ -1,10 +1,17 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('baby_app_logo.001.png' , size: '185x50'), "/" %>
-
   </header>
   <div class="items-sell-main">
+    <% unless flash[:alert] == nil %>
     <%= render 'shared/error_messages', model: @vaccination_list %>
+    <div class="error-alert">
+      <ul>
+        <li class='error-message'><%= alert %></li>
+      </ul>
+    </div>
+    <% end %>
+
     <h2 class="text-center">
       ワクチン接種予定入力
     </h2>
