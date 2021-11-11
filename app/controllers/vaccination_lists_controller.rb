@@ -1,9 +1,9 @@
 class VaccinationListsController < ApplicationController
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccines, only: [:set, :generate]
+  before_action :set_baby, only: [:index, :generate]
 
   def index
-    @baby = Baby.find(params[:baby_id])
     cookies[:baby_id] = @baby.id
     @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id])
   end
@@ -17,9 +17,9 @@ class VaccinationListsController < ApplicationController
     generate_vaccination_lists = []
     vaccine_ids.each do |vaccine_id|
       unless vaccine_id == ""
-      generate_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
-      generate_vaccination_list.assign_attributes(vaccination_ids_params)
-      generate_vaccination_lists << generate_vaccination_list
+        generate_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+        generate_vaccination_list.assign_attributes(vaccination_ids_params)
+        generate_vaccination_lists << generate_vaccination_list
       end
     end
     generate_vaccination_lists.each do |generate_vaccination_list|
@@ -30,7 +30,50 @@ class VaccinationListsController < ApplicationController
       end
     end
     generate_vaccination_lists.each do |generate_vaccination_list|
-      generate_vaccination_list.save
+      if generate_vaccination_list.save
+        case generate_vaccination_list.vaccine.name
+        when "B型肝炎（１回目）"
+
+        when "B型肝炎（２回目）"
+
+        when "ロタウイルス（１回目）"
+
+        when "ロタウイルス（２回目）"
+          
+        when "ヒブ（１回目）"
+          
+        when "ヒブ（２回目）"
+          
+        when "ヒブ（３回目）"
+          
+        when "小児用肺炎球菌（１回目）"
+          
+        when "小児用肺炎球菌（２回目）"
+          
+        when "小児用肺炎球菌（３回目）"
+          
+        when "四種混合（１回目）"
+          
+        when "四種混合（２回目）"
+          
+        when "四種混合（３回目）"
+          
+        when "麻しん・風しん（１回目）"
+          
+        when "水ぼうそう（１回目）"
+          
+        when "日本脳炎（１回目）"
+          
+        when "日本脳炎（２回目）"
+          
+        when "日本脳炎（３回目）"
+          
+        when "HPV（１回目）"
+          
+        when "HPV（２回目）"
+          
+        end
+      end
     end
     redirect_to baby_vaccination_lists_path
   end
@@ -73,5 +116,9 @@ class VaccinationListsController < ApplicationController
   def set_vaccines
     vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
     @vaccines = Vaccine.where(id: vaccination_ids)
+  end
+
+  def set_baby
+    @baby = Baby.find(params[:baby_id])
   end
 end
