@@ -125,7 +125,7 @@ class VaccinationListsController < ApplicationController
   def vaccination_create(start_date, end_date, vaccine_id)
     @generate_vaccination_list = VaccinationList.create(
       start_date: start_date,
-      end_date: @baby.birthday + end_date,
+      end_date: end_date,
       baby_id: @baby.id,
       vaccine_id: vaccine_id
     )
