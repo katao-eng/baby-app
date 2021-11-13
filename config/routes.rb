@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       member do
         get 'set'
         patch 'generate'
+        post 'generate'
         patch 'reset'
       end
     end

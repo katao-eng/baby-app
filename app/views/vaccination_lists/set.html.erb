@@ -1,10 +1,17 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('baby_app_logo.001.png' , size: '185x50'), "/" %>
-
   </header>
   <div class="items-sell-main">
     <%= render 'shared/error_messages', model: @vaccination_list %>
+    <% unless flash[:alert] == nil %>
+    <div class="error-alert">
+      <ul>
+        <li class='error-message'><%= alert %></li>
+      </ul>
+    </div>
+    <% end %>
+
     <h2 class="text-center">
       ワクチン接種予定入力
     </h2>
@@ -31,11 +38,17 @@
         同時に接種するワクチンを選択
       </div>
       <ul class="list-group">
-        <%= f.collection_check_boxes :vaccination_lists, @vaccination_lists, :id, :vaccine, class: "list-group-item" %>
-        <%
+        <li class="list-group-item">
+          <% if @vaccines.empty? %>
+          <p class="text-center">同時に接種可能なワクチンはありません</p>
+          <% else %>
+          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1" %>
+          <% end %>
+          <%
 =begin%>
-        <% @vaccination_lists.each do |vaccination_list| %>
-        <% unless vaccination_list.id == @vaccination_list.id %>
+
+          <% @vaccination_lists.each do |vaccination_list| %>
+          <% unless vaccination_list.id == @vaccination_list.id %>
         <li class="list-group-item">
           &emsp;
           <label>
@@ -47,6 +60,8 @@
         <% end %>
         <%
 =end%>
+
+        </li>
       </ul>
     </div>
 
