@@ -33,45 +33,48 @@ class VaccinationListsController < ApplicationController
       if generate_vaccination_list.save
         case generate_vaccination_list.vaccine.name
         when "B型肝炎（１回目）"
-
+          vaccination_create(generate_vaccination_list.date + 4.week, @baby.birthday + 28.week, 2)
         when "B型肝炎（２回目）"
-
+          vaccination_create(generate_vaccination_list.date + 16.week, @baby.birthday + 12.month, 3)
         when "ロタウイルス（１回目）"
-
+          vaccination_create(generate_vaccination_list.date + 4.week, @baby.birthday + 24.week, 5)
         when "ロタウイルス（２回目）"
-
+          vaccination_create(generate_vaccination_list.date + 4.week, @baby.birthday + 32.week, 6)
         when "ヒブ（１回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 4.week, generate_vaccination_list.date + 8.week, 8)
         when "ヒブ（２回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 4.week, generate_vaccination_list.date + 8.week, 9)
         when "ヒブ（３回目）"
-          
+          set_last_vaccination_list(7)
+          vaccination_create(last_vaccination_list.date + 7.month, @baby.birthday + 5.year, 10)
         when "小児用肺炎球菌（１回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 4.week, @baby.birthday + 11.month, 12)
         when "小児用肺炎球菌（２回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 4.week, @baby.birthday + 12.month, 13)
         when "小児用肺炎球菌（３回目）"
-          
+          vaccination_create(haien_4th_compare_start_date(generate_vaccination_list), @baby.birthday + 15.month, 14)
         when "四種混合（１回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 3.week, generate_vaccination_list.date + 8.week, 16)
         when "四種混合（２回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 3.week, generate_vaccination_list.date + 8.week, 17)
         when "四種混合（３回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 6.month, generate_vaccination_list.date + 18.month, 18)
         when "麻しん・風しん（１回目）"
-          
+          vaccination_create(academic_year_start + 6.year, academic_year_end + 6.year, 21)
         when "水ぼうそう（１回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 3.month, generate_vaccination_list.date + 12.month, 23)
         when "日本脳炎（１回目）"
-          
+          vaccination_create(generate_vaccination_list.date + 6.days, generate_vaccination_list.date + 28.days, 25)
         when "日本脳炎（２回目）"
-          
+          set_last_vaccination_list(24)
+          vaccination_create(last_vaccination_list.date + 6.month, @baby.birthday + 90.month, 26)
         when "日本脳炎（３回目）"
-          
+          vaccination_create(@baby.birthday + 9.year, @baby.birthday + 13.year, 27)
         when "HPV（１回目）"
-          
+          vaccination_create(generate_vaccination_list.days + 1.month, @baby.birthday + 15.year, 29)
         when "HPV（２回目）"
-          
+          set_last_vaccination_list(28)
+          vaccination_create(hpv_3rd_compare_start_date(generate_vaccination_list, last_vaccination_list), @baby.birthday + 16.year, 30)
         end
       end
     end
@@ -129,5 +132,41 @@ class VaccinationListsController < ApplicationController
       baby_id: @baby.id,
       vaccine_id: vaccine_id
     )
+  end
+
+  def haien_4th_compare_start_date(generate_vaccination_list)
+    if generate_vaccination_list.date + 60.days > @baby.birthday + 12.month
+      generate_vaccination_list.date + 60.days
+    else
+      @baby.birthday + 12.month
+    end
+  end
+
+  def hpv_3rd_compare_start_date(generate_vaccination_list, last_vaccination_list)
+    if generate_vaccination_list.date + 2.month + 15.days > last_vaccination_list.date + 6.month
+      generate_vaccination_list.date + 2.month
+    else
+      last_vaccination_list.date + 6.month
+    end  
+  end
+
+  def academic_year_start
+    if @baby.birthday.month >= 4
+      Date.new(@baby.birthday.year, 4, 1)
+    else
+      Date.new(@baby.birthday.year - 1, 4, 1)
+    end
+  end
+
+  def academic_year_end
+    if @baby.birthday.month >= 4
+      Date.new(@baby.birthday.year + 1, 3, 31)
+    else
+      Date.new(@baby.birthday.year, 3, 31)
+    end
+  end
+
+  def set_last_vaccination_list(vaccine_id)
+    last_vaccination_list = VaccinationList.find(baby_id: params[:baby_id], vaccine_id: vaccine_id)
   end
 end
