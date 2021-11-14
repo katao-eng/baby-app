@@ -103,23 +103,21 @@ class VaccinationListsController < ApplicationController
     @reset_vaccination_lists.each do |reset_vaccination_list|
       case reset_vaccination_list.vaccine.name
       when "B型肝炎（１回目）"
-        next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 2)
-        if next_vaccination_list.date != nil
-          flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
+        set_next_vaccination(2)
+        if next_vaccination_check(@next_vaccination_list)
           render :show
           return
         end
       when "B型肝炎（２回目）"
-        next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 3)
-        if next_vaccination_list.date != nil
-          flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
+        set_next_vaccination(3)
+        if next_vaccination_check(@next_vaccination_list)
           render :show
           return
         end
       end
       reset_vaccination_list.assign_attributes(date: nil)
       reset_vaccination_lists << reset_vaccination_list
-      next_vaccination_lists << next_vaccination_list
+      next_vaccination_lists << @next_vaccination_list
     end
     reset_vaccination_lists.each do |reset_vaccination_list|
       reset_vaccination_list.save(validate: false)
@@ -202,5 +200,16 @@ class VaccinationListsController < ApplicationController
 
   def set_last_vaccination_list(vaccine_id)
     last_vaccination_list = VaccinationList.find(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+  end
+
+  def set_next_vaccination(vaccine_id)
+    @next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+  end
+
+  def next_vaccination_check(next_vaccination_list)
+    if next_vaccination_list.date != nil
+      flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
+      return true
+    end
   end
 end
