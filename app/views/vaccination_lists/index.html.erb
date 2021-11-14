@@ -27,7 +27,28 @@
             <% end %>
             <% end %>
 
+            <% if @vaccination_lists.exists?(vaccine_id: 2) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 2 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to set_baby_vaccination_list_path(id: vaccination_list.id) do %>
             <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
+            <% end %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
+            <button type="button" class="btn btn-outline-success">２回目&nbsp; 予定</button>
+            <% end %>
+            <% else %>
+            <%= link_to baby_vaccination_list_path(id: vaccination_list.id) do %>
+            <button type="button" class="btn btn-outline-danger">２回目 &emsp; 済</button>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
             <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
           </div>
         </div>
