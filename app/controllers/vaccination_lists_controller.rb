@@ -1,7 +1,8 @@
 class VaccinationListsController < ApplicationController
+  before_action :set_baby, only: [:index, :set, :generate, :show, :edit, :update, :reset]
+  before_action :move_to_myfamily_babies_path, only: [:index, :set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccines, only: [:set, :generate]
-  before_action :set_baby, only: [:index, :generate]
   before_action :set_show_vaccination_lists, only: [:show, :reset]
 
   def index
@@ -263,6 +264,10 @@ class VaccinationListsController < ApplicationController
 
   def set_baby
     @baby = Baby.find(params[:baby_id])
+  end
+
+  def move_to_myfamily_babies_path
+    redirect_to myfamily_babies_path unless current_user.id == @baby.user_id
   end
 
   def vaccination_create(start_date, end_date, vaccine_id)
