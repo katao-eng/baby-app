@@ -2,10 +2,11 @@ class VaccinationListsController < ApplicationController
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccines, only: [:set, :generate]
   before_action :set_baby, only: [:index, :generate]
+  before_action :set_show_vaccination_lists, only: [:show, :reset]
 
   def index
     cookies[:baby_id] = @baby.id
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id])
+    @vaccination_lists = VaccinationList.includes(:baby).references(:baby).where(baby_id: params[:baby_id])
   end
 
   def set
@@ -82,7 +83,6 @@ class VaccinationListsController < ApplicationController
   end
 
   def show
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def edit
@@ -97,8 +97,144 @@ class VaccinationListsController < ApplicationController
   end
 
   def reset
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
-    @vaccination_lists.update_all(date: nil)
+    @reset_vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
+    reset_vaccination_lists = []
+    next_vaccination_lists = []
+    @reset_vaccination_lists.each do |reset_vaccination_list|
+      case reset_vaccination_list.vaccine.name
+      when "B型肝炎（１回目）"
+        set_next_vaccination(2)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "B型肝炎（２回目）"
+        set_next_vaccination(3)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "ロタウイルス（１回目）"
+        set_next_vaccination(5)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "ロタウイルス（２回目）"
+        set_next_vaccination(6)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "ヒブ（１回目）"
+        set_next_vaccination(8)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "ヒブ（２回目）"
+        set_next_vaccination(9)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "ヒブ（３回目）"
+        set_next_vaccination(10)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "小児用肺炎球菌（１回目）"
+        set_next_vaccination(12)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "小児用肺炎球菌（２回目）"
+        set_next_vaccination(13)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "小児用肺炎球菌（３回目）"
+        set_next_vaccination(14)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "四種混合（１回目）"
+        set_next_vaccination(16)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "四種混合（２回目）"
+        set_next_vaccination(17)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "四種混合（３回目）"
+        set_next_vaccination(18)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "麻しん・風しん（１回目）"
+        set_next_vaccination(21)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "水ぼうそう（１回目）"
+        set_next_vaccination(23)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "日本脳炎（１回目）"
+        set_next_vaccination(25)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "日本脳炎（２回目）"
+        set_next_vaccination(26)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "日本脳炎（３回目）"
+        set_next_vaccination(27)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "HPV（１回目）"
+        set_next_vaccination(29)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      when "HPV（２回目）"
+        set_next_vaccination(30)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
+      end
+      reset_vaccination_list.assign_attributes(date: nil)
+      reset_vaccination_lists << reset_vaccination_list
+      next_vaccination_lists << @next_vaccination_list
+    end
+    reset_vaccination_lists.each do |reset_vaccination_list|
+      reset_vaccination_list.save(validate: false)
+    end
+    next_vaccination_lists.each do |next_vaccination_list|
+      if next_vaccination_list != nil
+        next_vaccination_list.destroy
+      end
+    end
     redirect_to baby_vaccination_lists_path
   end
 
@@ -110,6 +246,10 @@ class VaccinationListsController < ApplicationController
 
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
+  end
+
+  def set_show_vaccination_lists
+    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def vaccination_ids_params
@@ -168,5 +308,16 @@ class VaccinationListsController < ApplicationController
 
   def set_last_vaccination_list(vaccine_id)
     last_vaccination_list = VaccinationList.find(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+  end
+
+  def set_next_vaccination(vaccine_id)
+    @next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+  end
+
+  def next_vaccination_check(next_vaccination_list)
+    if next_vaccination_list.date != nil
+      flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
+      return true
+    end
   end
 end
