@@ -2,10 +2,10 @@ class VaccinationListsController < ApplicationController
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccines, only: [:set, :generate]
   before_action :set_baby, only: [:index, :generate]
+  before_action :set_vaccination_lists, only: [:index, :reset]
 
   def index
     cookies[:baby_id] = @baby.id
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id])
   end
 
   def set
@@ -97,8 +97,27 @@ class VaccinationListsController < ApplicationController
   end
 
   def reset
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
-    @vaccination_lists.update_all(date: nil)
+    @reset_vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
+    @reset_vaccination_lists.each do |reset_vaccination_list|
+      case reset_vaccination_list.vaccine.name
+      when "B型肝炎（１回目）"
+        next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 2)
+        if next_vaccination_list.date != nil
+          render :show
+          return
+        end
+      when "B型肝炎（２回目）"
+        next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 3)
+        if next_vaccination_list.date != nil
+          render :show
+          return
+        end
+      end
+      reset_vaccination_list.assign_attributes(date: nil)
+      reset_vaccination_list.save
+    end
+
+    # @vaccination_lists.update_all(date: nil)
     redirect_to baby_vaccination_lists_path
   end
 
@@ -110,6 +129,10 @@ class VaccinationListsController < ApplicationController
 
   def set_vaccination_list
     @vaccination_list = VaccinationList.find(params[:id])
+  end
+
+  def set_vaccination_lists
+    @vaccination_lists = VaccinationList.includes(:baby).references(:baby).where(baby_id: params[:baby_id])
   end
 
   def vaccination_ids_params
