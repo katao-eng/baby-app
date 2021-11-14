@@ -37,7 +37,22 @@
             <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
             <% end %>
 
+            <% if @vaccination_lists.exists?(vaccine_id: 3) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 3 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
             <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -57,11 +72,40 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 5) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 5 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
         &emsp; ※５価ワクチンの場合は３回接種 &emsp;
-        <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
+        <% if @vaccination_lists.exists?(vaccine_id: 6) %>
+        <% @vaccination_lists.each do |vaccination_list| %>
+        <% if vaccination_list.vaccine_id == 6 %>
+        <% if vaccination_list.date == nil %>
+        <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+        <% elsif vaccination_list.date >= Date.today %>
+        <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+        <% else %>
+        <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+        <% end %>
+        <% end %>
+        <% end %>
+        <% else %>
+        <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+        <% end %>
 
       </li>
       <li class="list-group-item list-group-item-warning">ヒブ &emsp; &emsp; &emsp; &emsp; &emsp; <div class="btn-group"
@@ -80,9 +124,54 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-success">２回目&nbsp; 予定</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 8) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 8 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 9) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 9 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 10) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 10 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '４回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '４回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '４回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>４回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -102,9 +191,54 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 12) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 12 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 13) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 13 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 14) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 14 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '４回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '４回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '４回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>４回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -124,9 +258,53 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 16) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 16 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 17) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 17 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 18) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 18 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '４回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '４回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '４回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>４回目 &emsp; 未</button>
+            <% end %>
 
           </div>
         </div>
@@ -166,7 +344,22 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 21) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 21 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -186,7 +379,22 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 23) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 23 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -206,9 +414,54 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">４回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 25) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 25 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 26) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 26 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 27) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 27 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '４回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '４回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '４回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>４回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
@@ -228,8 +481,38 @@
             <% end %>
             <% end %>
 
-            <button type="button" class="btn btn-outline-primary">２回目 &emsp; 未</button>
-            <button type="button" class="btn btn-outline-primary">３回目 &emsp; 未</button>
+            <% if @vaccination_lists.exists?(vaccine_id: 29) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 29 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '２回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '２回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '２回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>２回目 &emsp; 未</button>
+            <% end %>
+
+            <% if @vaccination_lists.exists?(vaccine_id: 30) %>
+            <% @vaccination_lists.each do |vaccination_list| %>
+            <% if vaccination_list.vaccine_id == 30 %>
+            <% if vaccination_list.date == nil %>
+            <%= link_to '３回目 &emsp; 未'.html_safe, set_baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-primary", type: "button" %>
+            <% elsif vaccination_list.date >= Date.today %>
+            <%= link_to '３回目&nbsp; 予定'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-success", type: "button" %>
+            <% else %>
+            <%= link_to '３回目 &emsp; 済'.html_safe, baby_vaccination_list_path(id: vaccination_list.id), class: "btn btn-outline-danger", type: "button" %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% else %>
+            <button type="button" class="btn btn-outline-secondary" disabled>３回目 &emsp; 未</button>
+            <% end %>
+
           </div>
         </div>
       </li>
