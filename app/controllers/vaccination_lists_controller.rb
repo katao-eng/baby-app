@@ -2,10 +2,11 @@ class VaccinationListsController < ApplicationController
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccines, only: [:set, :generate]
   before_action :set_baby, only: [:index, :generate]
-  before_action :set_vaccination_lists, only: [:index, :reset]
+  before_action :set_show_vaccination_lists, only: [:show, :reset]
 
   def index
     cookies[:baby_id] = @baby.id
+    @vaccination_lists = VaccinationList.includes(:baby).references(:baby).where(baby_id: params[:baby_id])
   end
 
   def set
@@ -82,7 +83,6 @@ class VaccinationListsController < ApplicationController
   end
 
   def show
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def edit
@@ -104,12 +104,14 @@ class VaccinationListsController < ApplicationController
       when "B型肝炎（１回目）"
         next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 2)
         if next_vaccination_list.date != nil
+          flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
           render :show
           return
         end
       when "B型肝炎（２回目）"
         next_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: 3)
         if next_vaccination_list.date != nil
+          flash.now[:alert] = "先に次回の接種（予定）日を削除してください！"
           render :show
           return
         end
@@ -135,8 +137,8 @@ class VaccinationListsController < ApplicationController
     @vaccination_list = VaccinationList.find(params[:id])
   end
 
-  def set_vaccination_lists
-    @vaccination_lists = VaccinationList.includes(:baby).references(:baby).where(baby_id: params[:baby_id])
+  def set_show_vaccination_lists
+    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def vaccination_ids_params
