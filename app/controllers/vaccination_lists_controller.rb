@@ -121,39 +121,107 @@ class VaccinationListsController < ApplicationController
           return
         end
       when "ロタウイルス（２回目）"
-
+        set_next_vaccination(6)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "ヒブ（１回目）"
-      
+        set_next_vaccination(8)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "ヒブ（２回目）"
-
+        set_next_vaccination(9)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "ヒブ（３回目）"
-
+        set_next_vaccination(10)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "小児用肺炎球菌（１回目）"
-      
+        set_next_vaccination(12)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "小児用肺炎球菌（２回目）"
-
+        set_next_vaccination(13)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "小児用肺炎球菌（３回目）"
-      
+        set_next_vaccination(14)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "四種混合（１回目）"
-
+        set_next_vaccination(16)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "四種混合（２回目）"
-      
+        set_next_vaccination(17)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "四種混合（３回目）"
-
+        set_next_vaccination(18)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "麻しん・風しん（１回目）"
-      
+        set_next_vaccination(21)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "水ぼうそう（１回目）"
-
+        set_next_vaccination(23)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "日本脳炎（１回目）"
-      
+        set_next_vaccination(25)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "日本脳炎（２回目）"
-
+        set_next_vaccination(26)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "日本脳炎（３回目）"
-      
+        set_next_vaccination(27)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "HPV（１回目）"
-
+        set_next_vaccination(29)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       when "HPV（２回目）"
-      
+        set_next_vaccination(30)
+        if next_vaccination_check(@next_vaccination_list)
+          render :show
+          return
+        end
       end
       reset_vaccination_list.assign_attributes(date: nil)
       reset_vaccination_lists << reset_vaccination_list
