@@ -6,13 +6,7 @@
 
   <div class="item-show">
     <div class="item-box">
-      <% unless flash[:alert] == nil %>
-      <div class="error-alert">
-        <ul>
-          <li class='error-message'><%= alert %></li>
-        </ul>
-      </div>
-      <% end %>
+      <%= render 'shared/flash_alert', model: @vaccination_list %>
       <h2 class="text-center">
         詳細
       </h2>
