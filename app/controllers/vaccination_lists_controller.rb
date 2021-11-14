@@ -99,6 +99,7 @@ class VaccinationListsController < ApplicationController
   def reset
     @reset_vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date)
     reset_vaccination_lists = []
+    next_vaccination_lists = []
     @reset_vaccination_lists.each do |reset_vaccination_list|
       case reset_vaccination_list.vaccine.name
       when "B型肝炎（１回目）"
@@ -118,12 +119,14 @@ class VaccinationListsController < ApplicationController
       end
       reset_vaccination_list.assign_attributes(date: nil)
       reset_vaccination_lists << reset_vaccination_list
+      next_vaccination_lists << next_vaccination_list
     end
     reset_vaccination_lists.each do |reset_vaccination_list|
       reset_vaccination_list.save(validate: false)
     end
-
-    # @vaccination_lists.update_all(date: nil)
+    next_vaccination_lists.each do |next_vaccination_list|
+      next_vaccination_list.destroy
+    end
     redirect_to baby_vaccination_lists_path
   end
 
