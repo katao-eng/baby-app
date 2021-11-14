@@ -125,7 +125,9 @@ class VaccinationListsController < ApplicationController
       reset_vaccination_list.save(validate: false)
     end
     next_vaccination_lists.each do |next_vaccination_list|
-      next_vaccination_list.destroy
+      if next_vaccination_list != nil
+        next_vaccination_list.destroy
+      end
     end
     redirect_to baby_vaccination_lists_path
   end
