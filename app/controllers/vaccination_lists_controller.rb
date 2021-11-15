@@ -2,7 +2,7 @@ class VaccinationListsController < ApplicationController
   before_action :set_baby, only: [:index, :set, :generate, :show, :edit, :update, :reset]
   before_action :move_to_myfamily_babies_path, only: [:index, :set, :generate, :show, :edit, :update, :reset]
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
-  before_action :set_vaccines, only: [:set, :generate]
+  before_action :set_vaccines, only: [:set, :generate, :edit, :update]
   before_action :set_show_vaccination_lists, only: [:show, :reset]
 
   def index
