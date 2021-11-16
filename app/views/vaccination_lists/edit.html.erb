@@ -31,7 +31,7 @@ app/assets/stylesheets/items/new.css %>
       </div>
     </div>
 
-    <%= form_with url: baby_vaccination_list_path, local: true do |f| %>
+    <%= form_with url: baby_vaccination_list_path, method: :patch, local: true do |f| %>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
