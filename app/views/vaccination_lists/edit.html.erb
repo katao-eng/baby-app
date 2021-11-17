@@ -36,14 +36,14 @@ app/assets/stylesheets/items/new.css %>
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
       <div class="weight-bold-text">
-        同時に接種するワクチンを選択
+        同時に予定変更するワクチンを選択
       </div>
       <ul class="list-group">
         <li class="list-group-item">
           <% if @vaccines.empty? %>
-          <p class="text-center">同時に接種可能なワクチンはありません</p>
+          <p class="text-center">同時に接種予定のワクチンはありません</p>
           <% else %>
-          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1" %>
+          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids %>
           <% end %>
         </li>
       </ul>

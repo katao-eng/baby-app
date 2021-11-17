@@ -2,7 +2,8 @@ class VaccinationListsController < ApplicationController
   before_action :set_baby
   before_action :move_to_root_path
   before_action :set_vaccination_list, only: [:set, :generate, :show, :edit, :update, :reset]
-  before_action :set_vaccines, only: [:set, :generate, :edit, :update]
+  before_action :set_vaccines, only: [:set, :generate]
+  before_action :set_update_vaccines, only: [:edit, :update]
   before_action :set_show_vaccination_lists, only: [:show, :reset]
 
   def index
@@ -90,6 +91,11 @@ class VaccinationListsController < ApplicationController
   def set_vaccines
     vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
     @vaccines = Vaccine.where(id: vaccination_ids)
+  end
+
+  def set_update_vaccines
+    @vaccination_ids = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id]).pluck(:vaccine_id)
+    @vaccines = Vaccine.where(id: @vaccination_ids)
   end
 
   def set_baby
