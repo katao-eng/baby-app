@@ -148,7 +148,7 @@ class VaccinationListsController < ApplicationController
   end
 
   def set_last_vaccination_list(vaccine_id)
-    last_vaccination_list = VaccinationList.find(baby_id: params[:baby_id], vaccine_id: vaccine_id)
+    @last_vaccination_list = VaccinationList.find_by(baby_id: params[:baby_id], vaccine_id: vaccine_id)
   end
 
   def set_next_vaccination(vaccine_id)
@@ -163,7 +163,11 @@ class VaccinationListsController < ApplicationController
   end
 
   def assign_attributes_vaccination_lists
-    vaccine_ids = params[:vaccination_ids] << @vaccination_list.vaccine_id.to_s
+    if params[:vaccination_ids] == nil
+      vaccine_ids = [] << @vaccination_list.vaccine_id.to_s
+    else
+      vaccine_ids = params[:vaccination_ids] << @vaccination_list.vaccine_id.to_s
+    end
     @update_vaccination_lists = []
     vaccine_ids.each do |vaccine_id|
       unless vaccine_id == ""
@@ -192,7 +196,7 @@ class VaccinationListsController < ApplicationController
           vaccination_create(update_vaccination_list.date + 4.week, update_vaccination_list.date + 8.week, 9)
         when "ヒブ（３回目）"
           set_last_vaccination_list(7)
-          vaccination_create(last_vaccination_list.date + 7.month, @baby.birthday + 5.year, 10)
+          vaccination_create(@last_vaccination_list.date + 7.month, @baby.birthday + 5.year, 10)
         when "小児用肺炎球菌（１回目）"
           vaccination_create(update_vaccination_list.date + 4.week, @baby.birthday + 11.month, 12)
         when "小児用肺炎球菌（２回目）"
@@ -213,14 +217,14 @@ class VaccinationListsController < ApplicationController
           vaccination_create(update_vaccination_list.date + 6.days, update_vaccination_list.date + 28.days, 25)
         when "日本脳炎（２回目）"
           set_last_vaccination_list(24)
-          vaccination_create(last_vaccination_list.date + 6.month, @baby.birthday + 90.month, 26)
+          vaccination_create(@last_vaccination_list.date + 6.month, @baby.birthday + 90.month, 26)
         when "日本脳炎（３回目）"
           vaccination_create(@baby.birthday + 9.year, @baby.birthday + 13.year, 27)
         when "HPV（１回目）"
-          vaccination_create(update_vaccination_list.days + 1.month, @baby.birthday + 15.year, 29)
+          vaccination_create(update_vaccination_list.date + 1.month, @baby.birthday + 15.year, 29)
         when "HPV（２回目）"
           set_last_vaccination_list(28)
-          vaccination_create(hpv_3rd_compare_start_date(update_vaccination_list, last_vaccination_list), @baby.birthday + 16.year, 30)
+          vaccination_create(hpv_3rd_compare_start_date(update_vaccination_list, @last_vaccination_list), @baby.birthday + 16.year, 30)
         end
       end
     end
@@ -244,7 +248,7 @@ class VaccinationListsController < ApplicationController
           vaccination_update(update_vaccination_list.date + 4.week, update_vaccination_list.date + 8.week, 9)
         when "ヒブ（３回目）"
           set_last_vaccination_list(7)
-          vaccination_update(last_vaccination_list.date + 7.month, @baby.birthday + 5.year, 10)
+          vaccination_update(@last_vaccination_list.date + 7.month, @baby.birthday + 5.year, 10)
         when "小児用肺炎球菌（１回目）"
           vaccination_update(update_vaccination_list.date + 4.week, @baby.birthday + 11.month, 12)
         when "小児用肺炎球菌（２回目）"
@@ -265,14 +269,14 @@ class VaccinationListsController < ApplicationController
           vaccination_update(update_vaccination_list.date + 6.days, update_vaccination_list.date + 28.days, 25)
         when "日本脳炎（２回目）"
           set_last_vaccination_list(24)
-          vaccination_update(last_vaccination_list.date + 6.month, @baby.birthday + 90.month, 26)
+          vaccination_update(@last_vaccination_list.date + 6.month, @baby.birthday + 90.month, 26)
         when "日本脳炎（３回目）"
           vaccination_update(@baby.birthday + 9.year, @baby.birthday + 13.year, 27)
         when "HPV（１回目）"
-          vaccination_update(update_vaccination_list.days + 1.month, @baby.birthday + 15.year, 29)
+          vaccination_update(update_vaccination_list.date + 1.month, @baby.birthday + 15.year, 29)
         when "HPV（２回目）"
           set_last_vaccination_list(28)
-          vaccination_update(hpv_3rd_compare_start_date(update_vaccination_list, last_vaccination_list), @baby.birthday + 16.year, 30)
+          vaccination_update(hpv_3rd_compare_start_date(update_vaccination_list, @last_vaccination_list), @baby.birthday + 16.year, 30)
         end
       end
     end
