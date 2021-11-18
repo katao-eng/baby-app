@@ -1,5 +1,5 @@
 class BabiesController < ApplicationController
-  before_action :baby_list, only: [:myfamily]
+  before_action :baby_list, only: :myfamily
 
   def index
     if cookies[:baby_id] != nil

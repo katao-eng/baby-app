@@ -7,6 +7,7 @@ app/assets/stylesheets/items/new.css %>
   </header>
   <div class="items-sell-main">
     <%= render 'shared/error_messages', model: @vaccination_list %>
+    <%= render 'shared/flash_alert', model: @vaccination_list %>
     <h2 class="text-center">
       ワクチン接種予定変更
     </h2>
@@ -22,37 +23,28 @@ app/assets/stylesheets/items/new.css %>
             <%= @vaccination_list.start_date.strftime("%Y年%m月%d日") %>
           </span>〜<span>
             <%= @vaccination_list.end_date.strftime("%Y年%m月%d日") %>
-          </span></h4>
+          </span>
+        </h4>
+        <hr>
+        <h5 class="text-center">◎登録中の接種（予定）日◎</h5>
+        <h4 class="text-center"><%= @vaccination_list.date.strftime("%Y年%m月%d日") %></h4>
       </div>
     </div>
 
-    <%= form_with model: @vaccination_list, url: baby_vaccination_list_path, local: true do |f| %>
+    <%= form_with url: baby_vaccination_list_path, method: :patch, local: true do |f| %>
 
     <%# 接種状況に応じてチェックボックスが変わるように実装する。 %>
     <div class="new-items">
       <div class="weight-bold-text">
-        同時に接種するワクチンを選択
+        同時に予定変更するワクチンを選択
       </div>
       <ul class="list-group">
         <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          ロタウイルス（１回目）
-        </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          ヒブ（３回目）
-        </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          小児用肺炎球菌（１回目）
-        </li>
-        <li class="list-group-item">
-          &emsp;
-          <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-          四種混合（２回目）
+          <% if @vaccines.empty? %>
+          <p class="text-center">同時に接種予定のワクチンはありません</p>
+          <% else %>
+          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids %>
+          <% end %>
         </li>
       </ul>
     </div>
