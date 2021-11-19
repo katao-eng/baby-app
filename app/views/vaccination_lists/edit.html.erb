@@ -52,7 +52,15 @@ app/assets/stylesheets/items/new.css %>
             <%= b.label %>
           </li>
           <li class="list-group-item w-50">
-
+            <% @vaccination_lists.each_with_index do |vaccination_list, index| %>
+            <% if b.label.include?(vaccination_list.vaccine.name) %>
+            (
+            <%= vaccination_list.start_date.strftime("%Y年%m月%d日") %>
+            </span>〜<span>
+              <%= vaccination_list.end_date.strftime("%Y年%m月%d日") %>
+              )
+              <% end %>
+              <% end %>
           </li>
         </ul>
         <% end %>
