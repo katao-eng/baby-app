@@ -45,13 +45,21 @@ app/assets/stylesheets/items/new.css %>
           <p class="text-center">同時に接種予定のワクチンはありません</p>
         </li>
         <% else %>
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item w-50 text-center">
+            ワクチン名
+          </li>
+          <li class="list-group-item w-50 text-center">
+            接種可能期間
+          </li>
+        </ul>
         <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids do |b| %>
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item w-50">
             <%= b.check_box %>
             <%= b.label %>
           </li>
-          <li class="list-group-item w-50">
+          <li class="list-group-item w-50 text-center">
             <% @vaccination_lists.each_with_index do |vaccination_list, index| %>
             <% if b.label.include?(vaccination_list.vaccine.name) %>
             (
