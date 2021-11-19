@@ -46,10 +46,15 @@ app/assets/stylesheets/items/new.css %>
         </li>
         <% else %>
         <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids do |b| %>
-        <li class="list-group-item">
-          <%= b.check_box %>
-          <%= b.label %>
-        </li>
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item w-50">
+            <%= b.check_box %>
+            <%= b.label %>
+          </li>
+          <li class="list-group-item w-50">
+
+          </li>
+        </ul>
         <% end %>
         <% end %>
       </ul>
