@@ -30,6 +30,7 @@ app/assets/stylesheets/items/new.css %>
         <h4 class="text-center"><%= @vaccination_list.date.strftime("%Y年%m月%d日") %></h4>
       </div>
     </div>
+    <br>
 
     <%= form_with url: baby_vaccination_list_path, method: :patch, local: true do |f| %>
 
@@ -39,13 +40,18 @@ app/assets/stylesheets/items/new.css %>
         同時に予定変更するワクチンを選択
       </div>
       <ul class="list-group">
+        <% if @vaccines.empty? %>
         <li class="list-group-item">
-          <% if @vaccines.empty? %>
           <p class="text-center">同時に接種予定のワクチンはありません</p>
-          <% else %>
-          <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids %>
-          <% end %>
         </li>
+        <% else %>
+        <%= f.collection_check_boxes :vaccination_ids, @vaccines, :id, :name, class: "form-check-input me-1", checked: @vaccination_ids do |b| %>
+        <li class="list-group-item">
+          <%= b.check_box %>
+          <%= b.label %>
+        </li>
+        <% end %>
+        <% end %>
       </ul>
     </div>
     <%# //接種状況に応じてチェックボックスが変わるように実装する。 %>
