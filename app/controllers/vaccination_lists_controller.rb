@@ -91,6 +91,7 @@ class VaccinationListsController < ApplicationController
   def set_vaccines
     vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
     @vaccines = Vaccine.where(id: vaccination_ids)
+    @vaccination_lists = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id])
   end
 
   def set_update_vaccines
