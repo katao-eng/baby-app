@@ -10,6 +10,9 @@ document.addEventListener('turbolinks:load', function() {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new Calendar(calendarEl, {
+    dayCellContent: function(e) {
+      e.dayNumberText = e.dayNumberText.replace('日', '');
+    },
     plugins: [ dayGridPlugin, interactionPlugin ],
 
     locale: 'ja',
