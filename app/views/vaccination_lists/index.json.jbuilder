@@ -9,10 +9,12 @@ json.array!(@vaccination_lists) do |vaccination_list|
     json.title vaccination_list.vaccine.name + "予定"
     json.start vaccination_list.date
     json.end vaccination_list.date
+    json.color "green"
   else
     json.id vaccination_list.vaccine.id
     json.title vaccination_list.vaccine.name + "済"
     json.start vaccination_list.date
     json.end vaccination_list.date
+    json.color "red"
   end
 end
