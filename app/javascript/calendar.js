@@ -3,6 +3,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 document.addEventListener('turbolinks:load', function() {
+  var calendarPathname = location.pathname.split('/');
+
+  var babyId = calendarPathname[2];
+
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new Calendar(calendarEl, {
@@ -10,6 +14,7 @@ document.addEventListener('turbolinks:load', function() {
 
     locale: 'ja',
     timeZone: 'Asia/Tokyo',
+    events: '/babies/' + babyId + '/vaccination_lists.json',
 
   });
 
