@@ -41,7 +41,13 @@
           <br>
           <hr>
           <br>
-          <h4 class="text-center"><u>同時接種予定</u></h4>
+          <h4 class="text-center"><u>
+              <% if @vaccination_list.date >= Date.today %>
+              同時接種予定
+              <% else %>
+              同時接種
+              <% end %>
+            </u></h4>
           <br>
           <% if @vaccination_lists.empty? %>
           <p class="text-center">同時接種予定のワクチンはありません</p>
