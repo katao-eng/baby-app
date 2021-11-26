@@ -525,6 +525,9 @@
     <h4 class='title'>
       接種予定カレンダー
     </h4>
+    <div class='text-center text-dark bg-warning'>
+      <span class="lead"><%= @baby.nickname %>ちゃん 誕生日 <%= @baby.birthday.strftime("%Y年%m月%d日") %></span>
+    </div>
     <div id='calendar'></div>
     <br>
     ※ &nbsp; 日本小児科学会の推奨期間を参考に作成しています。
