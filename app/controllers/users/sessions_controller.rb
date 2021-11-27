@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
       user.relationship_id = 0
     end
     sign_in user
-    redirect_to root_path
+    redirect_to guest_baby_create_babies_path
   end
 
   protected

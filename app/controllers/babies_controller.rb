@@ -1,5 +1,5 @@
 class BabiesController < ApplicationController
-  before_action :baby_list, only: :myfamily
+  before_action :baby_list, only: :my_babies
 
   def index
     if cookies[:baby_id] != nil
@@ -9,7 +9,7 @@ class BabiesController < ApplicationController
     end
   end
 
-  def myfamily
+  def my_babies
   end
 
   def new
@@ -18,6 +18,16 @@ class BabiesController < ApplicationController
 
   def create
     @baby = Baby.new(baby_params)
+    if @baby.save
+      set_vaccination_lists
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  def guest_baby_create
+    @baby = Baby.new(nickname: "陽葵（ゲスト）", birthday: Date.today - 55.days, user_id: current_user.id)
     if @baby.save
       set_vaccination_lists
       redirect_to root_path
