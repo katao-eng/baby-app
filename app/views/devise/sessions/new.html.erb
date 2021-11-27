@@ -36,6 +36,13 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     <br>
     <div class="text-center">アカウントをお持ちでない方は<a href="/users/sign_up" class="alert-link">こちら</a></div>
+    <br>
+
+    <div class="text-center">
+      <%= link_to destroy_user_session_path do %>
+      <button type="button" class="btn btn-danger btn-lg">ゲスト用ログイン</button>
+      <% end %>
+    </div>
 
     <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
   </form>
