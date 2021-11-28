@@ -39,7 +39,7 @@
     <br>
 
     <div class="text-center">
-      <%= link_to guest_sign_in_path, method: :post, data: { confirm: 'ゲストとして登録するデータは次回ログイン時に削除されます。'} do %>
+      <%= link_to guest_sign_in_path, method: :post, data: { confirm: 'ゲストとして登録するデータは２時間経過後の次回ログイン時に削除されます。'} do %>
       <button type="button" class="btn btn-danger btn-lg">ゲスト用ログイン</button>
       <% end %>
     </div>

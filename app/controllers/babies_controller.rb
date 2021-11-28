@@ -27,7 +27,10 @@ class BabiesController < ApplicationController
   end
 
   def guest_baby_create
-    @baby = Baby.new(nickname: "陽葵（ゲスト）", birthday: Date.today - 55.days, user_id: current_user.id)
+    thanks_babies = Baby.where("created_at < ? AND user_id = ?", Time.now - 2.hours, current_user.id)
+    thanks_babies.destroy_all
+    Faker::Config.locale = :ja
+    @baby = Baby.new(nickname: Faker::Name.first_name + "（ゲスト）", birthday: Date.today - 55.days, user_id: current_user.id)
     if @baby.save
       set_vaccination_lists
       redirect_to root_path
