@@ -30,7 +30,7 @@
     </h4>
     <br>
 
-    <div class="list-group">
+    <div class="list-group text-center">
       <% @babies.each do |baby| %>
       <%= link_to baby.nickname, baby_vaccination_lists_path(baby.id), class: "list-group-item list-group-item-action" %>
       <% end %>

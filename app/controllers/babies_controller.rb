@@ -1,5 +1,5 @@
 class BabiesController < ApplicationController
-  before_action :baby_list, only: :myfamily
+  before_action :baby_list, only: :my_babies
 
   def index
     if cookies[:baby_id] != nil
@@ -9,7 +9,7 @@ class BabiesController < ApplicationController
     end
   end
 
-  def myfamily
+  def my_babies
   end
 
   def new
@@ -19,31 +19,20 @@ class BabiesController < ApplicationController
   def create
     @baby = Baby.new(baby_params)
     if @baby.save
-      cookies[:baby_id] = @baby.id
-      @vaccination_lists = VaccinationList.create(
-        [
-            # B型肝炎（１回目）
-            vaccination_create(1, 8.week, 27.week),
-            # ロタウイルス（１回目）
-            vaccination_create(4, 6.week, 15.week - 1.days),
-            # ヒブ（１回目）
-            vaccination_create(7, 2.month, 6.month),
-            # 小児用肺炎球菌（１回目）
-            vaccination_create(11, 2.month, 6.month),
-            # 四種混合（１回目）
-            vaccination_create(15, 3.month, 6.year),
-            # BCG（１回目）
-            vaccination_create(19, 5.month, 8.month),
-            # 麻しん・風しん（１回目）
-            vaccination_create(20, 1.year, 2.year - 1.days),
-            # 水ぼうそう（１回目）
-            vaccination_create(22, 12.month, 33.month - 1.days),
-            # 日本脳炎（１回目）
-            vaccination_create(24, 3.year, 4.year),
-            # HPV（１回目）
-            vaccination_create(28, 12.year, 15.year)
-        ]
-      )
+      set_vaccination_lists
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  def guest_baby_create
+    thanks_babies = Baby.where("created_at < ? AND user_id = ?", Time.now - 2.hours, current_user.id)
+    thanks_babies.destroy_all
+    Faker::Config.locale = :ja
+    @baby = Baby.new(nickname: Faker::Name.first_name + "（ゲスト）", birthday: Date.today - 55.days, user_id: current_user.id)
+    if @baby.save
+      set_vaccination_lists
       redirect_to root_path
     else
       render :new
@@ -70,5 +59,33 @@ class BabiesController < ApplicationController
       baby_id: @baby.id,
       vaccine_id: vaccine_id
     }
+  end
+
+  def set_vaccination_lists
+    cookies[:baby_id] = @baby.id
+    @vaccination_lists = VaccinationList.create(
+      [
+          # B型肝炎（１回目）
+          vaccination_create(1, 8.week, 27.week),
+          # ロタウイルス（１回目）
+          vaccination_create(4, 6.week, 15.week - 1.days),
+          # ヒブ（１回目）
+          vaccination_create(7, 2.month, 6.month),
+          # 小児用肺炎球菌（１回目）
+          vaccination_create(11, 2.month, 6.month),
+          # 四種混合（１回目）
+          vaccination_create(15, 3.month, 6.year),
+          # BCG（１回目）
+          vaccination_create(19, 5.month, 8.month),
+          # 麻しん・風しん（１回目）
+          vaccination_create(20, 1.year, 2.year - 1.days),
+          # 水ぼうそう（１回目）
+          vaccination_create(22, 12.month, 33.month - 1.days),
+          # 日本脳炎（１回目）
+          vaccination_create(24, 3.year, 4.year),
+          # HPV（１回目）
+          vaccination_create(28, 12.year, 15.year)
+      ]
+    )
   end
 end

@@ -19,6 +19,16 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def guest_sign_in
+    cookies.delete :baby_id
+    user = User.find_or_create_by!(email: 'guest@email.com') do |user|
+      user.password = SecureRandom.alphanumeric
+      user.relationship_id = 0
+    end
+    sign_in user
+    redirect_to guest_baby_create_babies_path
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.

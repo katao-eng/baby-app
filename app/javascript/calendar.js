@@ -3,13 +3,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 document.addEventListener('turbolinks:load', function() {
-  var calendarPathname = location.pathname.split('/');
+  const calendarPathname = location.pathname.split('/');
 
-  var babyId = calendarPathname[2];
+  const babyId = calendarPathname[2];
 
-  var calendarEl = document.getElementById('calendar');
+  const calendarEl = document.getElementById('calendar');
 
-  var calendar = new Calendar(calendarEl, {
+  const calendar = new Calendar(calendarEl, {
     dayCellContent: function(e) {
       e.dayNumberText = e.dayNumberText.replace('日', '');
     },
