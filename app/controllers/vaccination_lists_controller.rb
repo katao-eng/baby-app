@@ -8,7 +8,7 @@ class VaccinationListsController < ApplicationController
 
   def index
     cookies[:baby_id] = @baby.id
-    @vaccination_lists = VaccinationList.includes(:baby).references(:baby).where(baby_id: params[:baby_id])
+    @vaccination_lists = VaccinationList.includes(:vaccine).references(:vaccines).where(baby_id: params[:baby_id])
   end
 
   def set
@@ -81,7 +81,7 @@ class VaccinationListsController < ApplicationController
   end
 
   def set_show_vaccination_lists
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
+    @vaccination_lists = VaccinationList.includes(:vaccine).references(:vaccines).where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def vaccination_ids_params
@@ -91,13 +91,13 @@ class VaccinationListsController < ApplicationController
   def set_vaccines
     vaccination_ids = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id]).pluck(:vaccine_id)
     @vaccines = Vaccine.where(id: vaccination_ids)
-    @vaccination_lists = VaccinationList.where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id])
+    @vaccination_lists = VaccinationList.includes(:vaccine).references(:vaccines).where("baby_id = ? AND start_date <= ? AND end_date >= ?", params[:baby_id], @vaccination_list.end_date, @vaccination_list.start_date).where(date: nil).where.not(id: params[:id])
   end
 
   def set_update_vaccines
     @vaccination_ids = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id]).pluck(:vaccine_id)
     @vaccines = Vaccine.where(id: @vaccination_ids)
-    @vaccination_lists = VaccinationList.where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
+    @vaccination_lists = VaccinationList.includes(:vaccine).references(:vaccines).where(baby_id: params[:baby_id], date: @vaccination_list.date).where.not(id: params[:id])
   end
 
   def set_baby
